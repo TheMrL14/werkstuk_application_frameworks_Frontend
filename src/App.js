@@ -1,10 +1,11 @@
-import logo from "./logo.svg";
 import "./App.css";
+import Index from "./components/Index";
 
 function App() {
   return (
     <div className="App">
-      <h1>test</h1>
+      <h1>Magical Mythical Beast Shop</h1>
+      <Index></Index>
     </div>
   );
 }
