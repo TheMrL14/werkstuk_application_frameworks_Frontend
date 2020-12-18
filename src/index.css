@@ -11,6 +11,34 @@ body {
   padding-left: 5em;
   padding-right: 5em;
 }
+
+.button {
+  padding: 0.5% !important;
+  margin: 0.5% 2% !important;
+}
+
+.animals {
+  color: #4c1525;
+  text-align: left;
+  text-transform: uppercase;
+  width: fit-content;
+  padding: 1% 2%;
+}
+
+.animalsBtn {
+  background-color: #4c1525 !important;
+  color: white !important;
+}
+
+.accessoriesBtn {
+  background-color: #15254c !important;
+  color: white !important;
+}
+
+.foodBtn {
+  background-color: #254c15 !important;
+  color: white !important;
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;

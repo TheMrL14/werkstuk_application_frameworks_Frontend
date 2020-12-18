@@ -10,14 +10,14 @@ class ProductTile extends Component {
     return (
       <Card>
         <CardContent>
-          <Typography color="textSecondary">
+          <Typography className={this.props.product.category}>
             {this.props.product.category}
           </Typography>
           <Typography variant="h5" component="h2">
             {this.props.product.productName}
           </Typography>
           <Typography color="textSecondary">
-            {this.props.product.price}
+            {this.props.product.price}€
           </Typography>
           <Typography variant="body2" component="p">
             {this.props.product.description}
