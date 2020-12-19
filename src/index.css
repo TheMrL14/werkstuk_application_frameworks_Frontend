@@ -1,5 +1,6 @@
 body {
   margin: 0;
+  padding: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
@@ -8,35 +9,59 @@ body {
 }
 
 .index {
-  padding-left: 5em;
-  padding-right: 5em;
+  padding: 0;
+  margin: 5% 15%;
 }
 
-.button {
+.navigation {
+  margin: 0;
+  padding: 0% 15% !important;
+  position: sticky !important;
+  background-color: #ffffff;
+  color: #262c30;
+}
+
+.filters {
+  background-color: rgba(38, 44, 48, 1);
+  text-align: center;
+}
+
+.navTitle {
+  color: #262c30;
+  text-decoration: none;
+}
+
+.btnDetails {
+  background-color: #262c30 !important;
+  padding: 10% 20% !important;
+  color: white !important;
+}
+.btnFilter {
   padding: 0.5% !important;
   margin: 0.5% 2% !important;
+  color: white !important;
 }
 
 .animals {
-  color: #4c1525;
+  color: #f9a16f;
   text-align: left;
   text-transform: uppercase;
   width: fit-content;
-  padding: 1% 2%;
+  padding: 0% 0%;
 }
 
 .animalsBtn {
-  background-color: #4c1525 !important;
+  background-color: #f9a16f !important;
   color: white !important;
 }
 
 .accessoriesBtn {
-  background-color: #15254c !important;
+  background-color: #71c0ba !important;
   color: white !important;
 }
 
 .foodBtn {
-  background-color: #254c15 !important;
+  background-color: #579043 !important;
   color: white !important;
 }
 code {

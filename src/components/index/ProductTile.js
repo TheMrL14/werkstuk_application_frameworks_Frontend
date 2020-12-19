@@ -13,7 +13,7 @@ class ProductTile extends Component {
           <Typography className={this.props.product.category}>
             {this.props.product.category}
           </Typography>
-          <Typography variant="h5" component="h2">
+          <Typography variant="h5" component="h1">
             {this.props.product.productName}
           </Typography>
           <Typography color="textSecondary">
@@ -23,8 +23,10 @@ class ProductTile extends Component {
             {this.props.product.description}
           </Typography>
         </CardContent>
-        <CardActions>
-          <Button size="small">Learn More</Button>
+        <CardActions style={{ float: "right" }}>
+          <Button className="btnDetails" size="small">
+            Details
+          </Button>
         </CardActions>
       </Card>
     );

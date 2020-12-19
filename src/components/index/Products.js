@@ -15,7 +15,7 @@ class Products extends Component {
     return (
       <Grid container spacing={3}>
         {this.props.products.map((i) => (
-          <Grid item xs={6} sm={4}>
+          <Grid item xs={1} sm={12}>
             <ProductTile product={i}></ProductTile>
           </Grid>
         ))}
