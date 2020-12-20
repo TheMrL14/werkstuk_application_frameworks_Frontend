@@ -15,7 +15,7 @@ class Index extends Component {
 
   render = () => {
     return (
-      <div className="index">
+      <div className="content">
         <FilterTags
           types={this.state.types}
           onClick={this.filterClickHandler}
