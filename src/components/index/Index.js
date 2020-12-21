@@ -6,7 +6,7 @@ let INDEX = "http://localhost:8080/api";
 let PRODUCTS = INDEX + "/products";
 let CATEGORIES = PRODUCTS + "/types";
 
-class Index extends Component {
+export default class Index extends Component {
   state = {
     products: [],
     viewProducts: [],
@@ -103,5 +103,3 @@ class Index extends Component {
       });
   };
 }
-
-export default Index;

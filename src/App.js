@@ -1,6 +1,6 @@
 import "./App.css";
 import React from "react";
-import { Route, Switch } from "react-router-dom";
+import { Redirect, Route, Switch } from "react-router-dom";
 import Index from "./components/index/Index";
 import Navigation from "./components/shared/Navigation";
 import { Component } from "react";
@@ -21,12 +21,18 @@ class App extends Component {
         <Switch>
           <Route
             path="/"
-            render={(props) => <Index auth={this.auth} {...props}></Index>}
+            render={(props) => <Index auth={this.auth} {...props} />}
             exact
           />
           <Route
             path="/profile"
-            render={(props) => <Profile auth={this.auth} {...props}></Profile>}
+            render={(props) =>
+              this.auth.isAuthenticated() ? (
+                <Profile auth={this.auth} />
+              ) : (
+                <Redirect to="/" />
+              )
+            }
             exact
           />
           <Route

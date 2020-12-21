@@ -1,6 +1,5 @@
 import { Component } from "react";
 import Button from "@material-ui/core/Button";
-import { fade, makeStyles } from "@material-ui/core/styles";
 
 class FilterTags extends Component {
   render() {

@@ -6,7 +6,7 @@ export default class Auth {
     this.auth0 = new auth0.WebAuth({
       domain: "appframework-dev.eu.auth0.com",
       clientID: "ulOgeb4EEJYSQ5I0X1Sj6xyJcBwvhGFC",
-      redirectUri: process.env.REACT_APP_AUTH0_CALLBACK_URL,
+      redirectUri: "http://localhost:3000/callback",
       responseType: "token id_token",
       scope: "openid profile",
     });
@@ -42,4 +42,29 @@ export default class Auth {
     const expiresAt = JSON.parse(localStorage.getItem("expires_at"));
     return new Date().getTime() < expiresAt;
   }
+
+  logout = () => {
+    localStorage.removeItem("access_token");
+    localStorage.removeItem("id_token");
+    localStorage.removeItem("expires_at");
+    this.userProfile = null;
+    this.auth0.logout({
+      clientID: "ulOgeb4EEJYSQ5I0X1Sj6xyJcBwvhGFC",
+      returnTo: "http://localhost:3000",
+    });
+  };
+
+  getAccessToken = () => {
+    const accessToken = localStorage.getItem("access_token");
+    if (!accessToken) throw new Error("No access token found");
+    return accessToken;
+  };
+
+  getProfile = (callback) => {
+    if (this.userProfile) return callback(this.userProfile);
+    this.auth0.client.userInfo(this.getAccessToken(), (err, profile) => {
+      if (profile) this.userProfile = profile;
+      callback(profile, err);
+    });
+  };
 }

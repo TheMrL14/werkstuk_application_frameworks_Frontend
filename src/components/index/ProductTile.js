@@ -7,20 +7,17 @@ import Typography from "@material-ui/core/Typography";
 
 class ProductTile extends Component {
   render() {
+    const prod = this.props.product;
     return (
-      <Card>
+      <Card key={prod.productName}>
         <CardContent>
-          <Typography className={this.props.product.category}>
-            {this.props.product.category}
-          </Typography>
+          <Typography className={prod.category}>{prod.category}</Typography>
           <Typography variant="h5" component="h1">
-            {this.props.product.productName}
+            {prod.productName}
           </Typography>
-          <Typography color="textSecondary">
-            {this.props.product.price}€
-          </Typography>
+          <Typography color="textSecondary">{prod.price}€</Typography>
           <Typography variant="body2" component="p">
-            {this.props.product.description}
+            {prod.description}
           </Typography>
         </CardContent>
         <CardActions style={{ float: "right" }}>
