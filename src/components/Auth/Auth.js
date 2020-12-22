@@ -7,6 +7,7 @@ export default class Auth {
       domain: "appframework-dev.eu.auth0.com",
       clientID: "ulOgeb4EEJYSQ5I0X1Sj6xyJcBwvhGFC",
       redirectUri: "http://localhost:3000/callback",
+      audience: "http://localhost:8080",
       responseType: "token id_token",
       scope: "openid profile",
     });
