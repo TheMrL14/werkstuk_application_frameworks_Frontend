@@ -2,9 +2,7 @@ import { Component } from "react";
 import Products from "./Products";
 import FilterTags from "./FilterTags";
 
-let INDEX = "http://localhost:8080/api";
-let PRODUCTS = INDEX + "/products";
-let CATEGORIES = PRODUCTS + "/types";
+const path = require("../../PATHS");
 
 export default class Index extends Component {
   state = {
@@ -59,7 +57,7 @@ export default class Index extends Component {
 
   getProducts = () => {
     //fetch the courses from localhost
-    fetch(PRODUCTS, {
+    fetch(path.PRODUCTS, {
       method: "GET",
       headers: {
         accept: "application/json",
@@ -81,7 +79,7 @@ export default class Index extends Component {
 
   getTypes = () => {
     //fetch the courses from localhost
-    fetch(CATEGORIES, {
+    fetch(path.CATEGORIES, {
       method: "GET",
       headers: {
         accept: "application/json",

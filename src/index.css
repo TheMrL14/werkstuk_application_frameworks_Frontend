@@ -14,7 +14,16 @@ body {
 }
 
 .menuButton {
-  margin-left: 0.5em !important;
+  margin: 0 0.5em !important;
+  border-radius: 4px !important;
+}
+.basketButton {
+  background-color: #579043 !important;
+  margin-right: 0.5em !important;
+  color: #ffffff !important;
+  height: 2em;
+  width: 2em;
+  border-radius: 4px !important;
 }
 
 .loading {

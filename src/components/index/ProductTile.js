@@ -4,6 +4,8 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
+import { IconButton } from "@material-ui/core";
+import { ShoppingBasket } from "@material-ui/icons";
 
 class ProductTile extends Component {
   render() {
@@ -24,6 +26,15 @@ class ProductTile extends Component {
           <Button className="btnDetails" size="small">
             Details
           </Button>
+          <IconButton
+            edge="end"
+            className={"basketButton"}
+            color="inherit"
+            aria-label="open drawer"
+            to="/crate"
+          >
+            <ShoppingBasket></ShoppingBasket>
+          </IconButton>
         </CardActions>
       </Card>
     );

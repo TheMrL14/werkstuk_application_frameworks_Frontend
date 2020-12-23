@@ -4,8 +4,8 @@ import MenuItem from "@material-ui/core/MenuItem";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
-import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import { NavLink } from "react-router-dom";
+import CardNavigation from "./CardNavigation";
 
 export default class UserNavigation extends Component {
   state = {
@@ -25,7 +25,6 @@ export default class UserNavigation extends Component {
 
     const handleLogOut = () => {
       logout();
-
       handleClose();
     };
     return (
@@ -59,14 +58,7 @@ export default class UserNavigation extends Component {
             <Button onClick={login}>Login</Button>
           )}
         </Menu>
-        <IconButton
-          edge="end"
-          className={"menuButton"}
-          color="inherit"
-          aria-label="open drawer"
-        >
-          <ShoppingCartIcon />
-        </IconButton>
+        <CardNavigation></CardNavigation>
       </div>
     );
   }
