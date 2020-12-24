@@ -1,8 +1,7 @@
 import { Component } from "react";
 import Products from "./Products";
 import FilterTags from "./FilterTags";
-
-const path = require("../../PATHS");
+import ProductAPI from "../../API/ProductAPI";
 
 export default class Index extends Component {
   state = {
@@ -33,19 +32,16 @@ export default class Index extends Component {
     //check if 0 btns are on => display all products
     if (!this.state.types.some((t) => t.isSelected)) {
       selectedProducts.push(...this.state.products);
-      this.setState({ viewProducts: selectedProducts });
-      this.render();
+      this.reloadItems(selectedProducts);
       return;
     }
     this.state.types.forEach((c) => {
-      if (c.isSelected) {
-        selectedProducts.push(
-          ...this.state.products.filter((p) => p.category === c.category)
-        );
-      }
+      if (!c.isSelected) return;
+      selectedProducts.push(
+        ...this.state.products.filter((p) => p.category === c.category)
+      );
     });
-    this.setState({ viewProducts: selectedProducts });
-    this.render();
+    this.reloadItems(selectedProducts);
   };
 
   filterClickHandler = (category) => {
@@ -56,48 +52,23 @@ export default class Index extends Component {
   };
 
   getProducts = () => {
-    //fetch the courses from localhost
-    fetch(path.PRODUCTS, {
-      method: "GET",
-      headers: {
-        accept: "application/json",
-      },
-    })
-      .then((response) => {
-        if (response.ok) return response.json();
-        console.log("Error: ", response);
-      })
-      .then((json) => {
-        console.log("Products: ", json);
-        this.setState({ products: json });
-        this.filterByType();
-      })
-      .catch((error) => {
-        console.log("Error: ", error);
-      });
+    ProductAPI.findAllProducts((json) => {
+      this.setState({ products: json });
+      this.filterByType();
+    });
   };
 
   getTypes = () => {
-    //fetch the courses from localhost
-    fetch(path.CATEGORIES, {
-      method: "GET",
-      headers: {
-        accept: "application/json",
-      },
-    })
-      .then((response) => {
-        if (response.ok) return response.json();
-        console.log("Error: ", response);
-      })
-      .then((json) => {
-        json.forEach((j) => {
-          const type = { category: j, isSelected: false, style: j + "Btn" };
-          this.state.types.push(type);
-        });
-        console.log("types: ", this.state.types);
-      })
-      .catch((error) => {
-        console.log("Error: ", error);
+    ProductAPI.getAllTypes((json) => {
+      json.forEach((j) => {
+        const type = { category: j, isSelected: false, style: j + "Btn" };
+        this.state.types.push(type);
       });
+    });
+  };
+
+  reloadItems = (products) => {
+    this.setState({ viewProducts: products });
+    this.render();
   };
 }

@@ -5,7 +5,8 @@ import AccountCircle from "@material-ui/icons/AccountCircle";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import { NavLink } from "react-router-dom";
-import CardNavigation from "./CardNavigation";
+import CardNavigation from "./BasketNavigation";
+import BasketNavigation from "./BasketNavigation";
 
 export default class UserNavigation extends Component {
   state = {
@@ -58,7 +59,7 @@ export default class UserNavigation extends Component {
             <Button onClick={login}>Login</Button>
           )}
         </Menu>
-        <CardNavigation></CardNavigation>
+        <BasketNavigation></BasketNavigation>
       </div>
     );
   }

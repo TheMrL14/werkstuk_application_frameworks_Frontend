@@ -2,39 +2,44 @@ import "./App.css";
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 import Index from "./components/index/Index";
-import Navigation from "./components/shared/Navigation";
+
 import { Component } from "react";
 import Auth from "./components/Auth/Auth";
 import Callback from "./components/Callback";
-import Profile from "./components/user/Profile";
-import ShoppingCrate from "./components/user/ShoppingCrate";
+import Profile from "./components/profile/Profile";
+import ShoppingCrate from "./components/profile/ShoppingBasket";
 import AuthContext from "./AuthContext";
+import BasketContext from "./BasketContext";
 import PrivateRoute from "./PrivateRoute";
+import Navigation from "./components/shared/Navigation/Navigation";
+import Basket from "./model/Basket";
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       auth: new Auth(this.props.history),
+      basket: new Basket(),
     };
   }
 
   render() {
-    const { auth } = this.state;
+    const { auth, basket } = this.state;
     return (
       <AuthContext.Provider value={auth}>
-        <Navigation auth={auth} />
-        <Switch>
-          <Route path="/" render={(props) => <Index {...props} />} exact />
-
-          <Route
-            path="/callback"
-            render={(props) => <Callback auth={auth} {...props}></Callback>}
-          />
-          <PrivateRoute component={Profile}></PrivateRoute>
-          <PrivateRoute component={ShoppingCrate}></PrivateRoute>
-          <Route component={Error} />
-        </Switch>
+        <BasketContext.Provider value={basket}>
+          <Navigation auth={auth} />
+          <Switch>
+            <Route path="/" render={(props) => <Index {...props} />} exact />
+            <Route
+              path="/callback"
+              render={(props) => <Callback auth={auth} {...props}></Callback>}
+            />
+            <PrivateRoute component={Profile}></PrivateRoute>
+            <PrivateRoute component={ShoppingCrate}></PrivateRoute>
+            <Route component={Error} />
+          </Switch>
+        </BasketContext.Provider>
       </AuthContext.Provider>
     );
   }
