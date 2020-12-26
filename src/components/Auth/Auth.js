@@ -52,7 +52,6 @@ export default class Auth {
     _scopes = authResult.scope || this.requestedScopes || "";
     _accessToken = authResult.accessToken;
     //_idToken = authResult.idToken;
-    console.log(authResult);
     let userData = authResult.idTokenPayload;
     const user = new User(userData.sub, userData.nickname, userData.email);
     UserAPI.checkAndCreateUser(user, _accessToken, {});

@@ -1,11 +1,15 @@
-const API_INDEX = "http://localhost:8080/api";
-const PRODUCTS = API_INDEX + "/products";
-const USER = API_INDEX + "/user";
+const INDEX = "http://localhost:8080";
+const API = INDEX + "/api";
+const PRODUCTS = API + "/products";
+const USER = API + "/user";
+const PAYMENT = INDEX + "/payment";
 
 module.exports = {
-  APIINDEX: API_INDEX,
+  APIINDEX: API,
   PRODUCTS: PRODUCTS,
   CATEGORIES: PRODUCTS + "/types",
   USER: USER,
   CREATE_USER: USER + "/create",
+  PAYMENT: PAYMENT,
+  CHARGE: PAYMENT + "/charge",
 };

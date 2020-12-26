@@ -7,7 +7,7 @@ import { Component } from "react";
 import Auth from "./components/Auth/Auth";
 import Callback from "./components/Callback";
 import Profile from "./components/profile/Profile";
-import ShoppingCrate from "./components/profile/ShoppingBasket";
+import ShoppingBasket from "./components/profile/ShoppingBasket";
 import AuthContext from "./AuthContext";
 import BasketContext from "./BasketContext";
 import PrivateRoute from "./PrivateRoute";
@@ -35,8 +35,11 @@ class App extends Component {
               path="/callback"
               render={(props) => <Callback auth={auth} {...props}></Callback>}
             />
-            <PrivateRoute component={Profile}></PrivateRoute>
-            <PrivateRoute component={ShoppingCrate}></PrivateRoute>
+            <PrivateRoute path="/profile" component={Profile}></PrivateRoute>
+            <PrivateRoute
+              path="/basket"
+              component={ShoppingBasket}
+            ></PrivateRoute>
             <Route component={Error} />
           </Switch>
         </BasketContext.Provider>

@@ -26,6 +26,35 @@ body {
   border-radius: 4px !important;
 }
 
+.overlay {
+  position: absolute;
+  left: 25%;
+  right: 25%;
+  top: 25%;
+  bottom: 25%;
+  margin: auto;
+  border-radius: 20px;
+  background: white;
+}
+.bgOverlay {
+  background-color: rgba(38, 44, 48, 0.5) !important;
+  width: 100% !important;
+  height: 100% !important;
+  position: absolute !important;
+  top: 0 !important;
+}
+
+.navItemBtn {
+  color: white !important;
+  text-align: center !important;
+  padding: 2 !important;
+  text-transform: uppercase;
+}
+
+.MuiList-padding {
+  padding-bottom: 0 !important;
+}
+
 .loading {
   position: fixed;
   top: 50%;

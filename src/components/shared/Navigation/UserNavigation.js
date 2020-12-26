@@ -5,7 +5,6 @@ import AccountCircle from "@material-ui/icons/AccountCircle";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import { NavLink } from "react-router-dom";
-import CardNavigation from "./BasketNavigation";
 import BasketNavigation from "./BasketNavigation";
 
 export default class UserNavigation extends Component {

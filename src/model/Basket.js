@@ -2,7 +2,7 @@ const BASKET = "SHOPPING_BASKET_ITEMS";
 export default class Basket {
   constructor() {
     this.items = this.getItems();
-    console.log("Items: " + this.items);
+    this.totalPrice = 0;
   }
 
   addItem = (product) => {
@@ -15,12 +15,14 @@ export default class Basket {
       this.items.push(new BasketItem(1, product));
     }
     console.log(this.items);
+    this.totalPrice = this.calculateTotalPrice();
     this.updateStorage();
   };
 
   updateStorage = () => {
     this.emptyStorage();
-    localStorage.setItem(BASKET, JSON.stringify(this.items));
+
+    localStorage.setItem(BASKET, JSON.stringify(this));
   };
 
   getItems = () => {
@@ -31,6 +33,17 @@ export default class Basket {
 
   emptyStorage = () => {
     localStorage.removeItem(BASKET);
+  };
+
+  calculateTotalPrice = () => {
+    let totalPrice = 0;
+    console.log(this.items);
+    if (this.items.count <= 0) return 0;
+    this.items.array.forEach((i) => {
+      totalPrice = (totalPrice + i.product.price) * i.count;
+    });
+    console.log("total price:" + totalPrice);
+    return totalPrice;
   };
 }
 

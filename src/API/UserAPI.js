@@ -12,7 +12,7 @@ export default class UserAPI {
 
   static checkAndCreateUser = (user, token, callback) => {
     this.findUserById(user.id, token, (json) => {
-      if (json != null) this.postUserToDB(user, token, callback);
+      if (json == null) this.postUserToDB(user, token, callback);
     });
     //this.findUserById(user.id, token, {});
   };
