@@ -1,25 +1,28 @@
 import { Button } from "@material-ui/core";
 import React, { Component } from "react";
 import BasketContext from "../../BasketContext";
-import ChargeForm from "./ChargeForm";
+import CheckoutForm from "./CheckoutForm";
 import { loadStripe } from "@stripe/stripe-js";
-import PaymentAPI from "../../API/PaymentAPI";
+
 import { Elements } from "@stripe/react-stripe-js";
+
+const stripePromise = loadStripe(
+  "pk_test_51I2FQ9B9G0CsXo9KU6AlFK1uPcyv4xguDDmfcf08isL05zTXjcAxAHmMJ3s4i0ZRjrY6qbMIaHOPbz92VHEbUQu400lmuGs2G8"
+);
 
 export default class ShoppingBasket extends Component {
   state = {
     formIsShown: false,
-    stripePromise: null,
   };
+
+  componentDidMount = () => {};
 
   handleClick = (basket) => {
     if (this.state.formIsShown) this.handleClose();
-    console.log("klik");
-    this.getKey(basket.totalPrice);
+    this.setState({ formIsShown: true });
   };
 
   handleClose = () => {
-    console.log("close");
     this.setState({ formIsShown: !this.state.formIsShown });
   };
 
@@ -36,7 +39,7 @@ export default class ShoppingBasket extends Component {
               ))}
 
               <Button
-                onClick={() => this.handleClick(basket)}
+                onClick={() => this.handleClick(basket.items.totalPrice)}
                 style={{
                   backgroundColor: "#51538F",
                   color: "#ffffff",
@@ -46,28 +49,19 @@ export default class ShoppingBasket extends Component {
                 Buy
               </Button>
             </div>
-            {this.state.formIsShown && this.state.stripePromise != null ? (
-              <div
-                onClick={() => this.handleClose(basket)}
-                className="bgOverlay"
-              >
-                <ChargeForm promise={this.state.stripePromise}></ChargeForm>
-              </div>
-            ) : null}
-            {}
+            <Elements stripe={stripePromise}>
+              {this.state.formIsShown ? (
+                <div className="bgOverlay">
+                  <CheckoutForm
+                    auth={this.props.auth}
+                    total={basket.items.totalPrice}
+                  />
+                </div>
+              ) : null}
+            </Elements>
           </>
         )}
       </BasketContext.Consumer>
     );
   }
-  getKey = (price) => {
-    const token = this.props.auth.getAccessToken();
-    PaymentAPI.setup(token, price, (json) => {
-      this.setState({
-        stripePromise: loadStripe(json.stripePublicKey),
-        totalPrice: json.amount,
-        formIsShown: true,
-      });
-    });
-  };
 }

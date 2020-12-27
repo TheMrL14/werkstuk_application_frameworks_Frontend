@@ -17,6 +17,13 @@ body {
   margin: 0 0.5em !important;
   border-radius: 4px !important;
 }
+
+.paybtn {
+  background-color: #f9a16f !important;
+  color: #ffffff !important;
+  padding: 1em !important;
+}
+
 .basketButton {
   background-color: #579043 !important;
   margin-right: 0.5em !important;
@@ -36,6 +43,12 @@ body {
   border-radius: 20px;
   background: white;
 }
+
+.form-row {
+  text-align: center;
+  padding: 2em;
+}
+
 .bgOverlay {
   background-color: rgba(38, 44, 48, 0.5) !important;
   width: 100% !important;
