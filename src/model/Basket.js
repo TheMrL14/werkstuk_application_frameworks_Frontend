@@ -4,17 +4,19 @@ export default class Basket {
     this.init();
   }
 
+  // INIT BASKET
+  //get items from localstorage and fill when no localstorage items found
   init = () => {
     const localStorageItems = this.getItems();
     this.items = localStorageItems != null ? localStorageItems.items : [];
     console.log(this.items);
 
-    this.totalPrice = localStorageItems.totalPrice;
+    this.totalPrice =
+      localStorageItems != null ? localStorageItems.totalPrice : 0;
   };
-
+  //ADD item to localstorage
+  //check if item exist if yes => add count else create and add new item
   addItem = (product) => {
-    //this.init();
-
     let foundIndex = this.items.findIndex((i) => i.id === product.id);
     console.log(foundIndex);
     if (foundIndex >= 0) {
@@ -29,6 +31,7 @@ export default class Basket {
     this.updateStorage();
   };
 
+  //Clear localstorage and add new items
   updateStorage = () => {
     this.emptyStorage();
 
@@ -45,6 +48,7 @@ export default class Basket {
     localStorage.removeItem(BASKET);
   };
 
+  // calculate the price of all items in basket
   calculateTotalPrice = () => {
     let totalPrice = 0;
     console.log(this.items);
