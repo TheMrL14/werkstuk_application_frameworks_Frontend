@@ -11,6 +11,7 @@ export default class BasketNavigation extends Component {
   };
   render() {
     const handleClick = (event) => {
+      this.render();
       this.setState({ anchorEl: event.currentTarget });
     };
 
@@ -34,7 +35,6 @@ export default class BasketNavigation extends Component {
             >
               <ShoppingBasket />
             </IconButton>
-
             <Menu
               open={Boolean(this.state.anchorEl)}
               anchorEl={this.state.anchorEl}
@@ -42,20 +42,24 @@ export default class BasketNavigation extends Component {
               keepMounted
               style={{ paddingBottom: 0 }}
             >
-              {basket.items.items.map((i) => (
-                <BasketNavItem
-                  close={this.handleClose}
-                  product={i}
-                ></BasketNavItem>
-              ))}
-              <NavLink className={"title navItemBtn"} to="/basket">
-                <MenuItem
-                  style={{ backgroundColor: "#51538F" }}
-                  onClick={handleClose}
-                >
-                  basket
-                </MenuItem>
-              </NavLink>
+              {basket.itemsLength !== 0
+                ? basket.items.map((i) => (
+                    <BasketNavItem
+                      close={this.handleClose}
+                      product={i}
+                    ></BasketNavItem>
+                  ))
+                : null}
+              {basket.itemsLength !== 0 ? (
+                <NavLink className={"title navItemBtn"} to="/basket">
+                  <MenuItem
+                    style={{ backgroundColor: "#51538F" }}
+                    onClick={handleClose}
+                  >
+                    basket
+                  </MenuItem>
+                </NavLink>
+              ) : null}
             </Menu>
           </>
         )}

@@ -32,7 +32,7 @@ export default class ShoppingBasket extends Component {
         {(basket) => (
           <>
             <div className="content">
-              {basket.items.items.map((i) => (
+              {basket.items.map((i) => (
                 <p>
                   {i.count}x {i.product.productName}
                 </p>
@@ -54,7 +54,8 @@ export default class ShoppingBasket extends Component {
                 <div className="bgOverlay">
                   <CheckoutForm
                     auth={this.props.auth}
-                    total={basket.items.totalPrice}
+                    total={basket.totalPrice}
+                    items={basket.items}
                   />
                 </div>
               ) : null}

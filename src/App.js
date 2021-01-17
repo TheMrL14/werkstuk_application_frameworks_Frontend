@@ -16,13 +16,10 @@ import Navigation from "./components/shared/Navigation/Navigation";
 import Basket from "./model/Basket";
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      auth: new Auth(this.props.history),
-      basket: new Basket(),
-    };
-  }
+  state = {
+    auth: new Auth(this.props.history),
+    basket: new Basket(),
+  };
 
   render() {
     const { auth, basket } = this.state;

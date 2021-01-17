@@ -10,7 +10,10 @@ export default class CallbackPayment extends Component {
     var params = window.location.search;
     let path = "http://localhost:8080/payment/charge/" + params;
     PaymentAPI.checkIntent(this.props.auth.getAccessToken(), path, (json) => {
-      if (json.status === "succeeded") isDone = true;
+      if (json.status === "succeeded") {
+        localStorage.removeItem("SHOPPING_BASKET_ITEMS");
+        isDone = true;
+      }
     });
   };
 

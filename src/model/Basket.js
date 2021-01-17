@@ -1,20 +1,30 @@
 const BASKET = "SHOPPING_BASKET_ITEMS";
 export default class Basket {
   constructor() {
-    this.items = this.getItems();
-    this.totalPrice = 0;
+    this.init();
   }
 
+  init = () => {
+    const localStorageItems = this.getItems();
+    this.items = localStorageItems != null ? localStorageItems.items : [];
+    console.log(this.items);
+
+    this.totalPrice = localStorageItems.totalPrice;
+  };
+
   addItem = (product) => {
-    var foundIndex = this.items.findIndex((i) => i.id === product.id);
-    console.log(foundIndex <= 0);
+    //this.init();
+
+    let foundIndex = this.items.findIndex((i) => i.id === product.id);
+    console.log(foundIndex);
     if (foundIndex >= 0) {
       console.log("komt er in ofwa");
       this.items[foundIndex].count++;
     } else {
+      console.log("nieuw item");
       this.items.push(new BasketItem(1, product));
     }
-    console.log(this.items);
+
     this.totalPrice = this.calculateTotalPrice();
     this.updateStorage();
   };
@@ -27,7 +37,7 @@ export default class Basket {
 
   getItems = () => {
     return localStorage.getItem(BASKET) === null
-      ? []
+      ? null
       : JSON.parse(localStorage.getItem(BASKET));
   };
 
@@ -39,7 +49,7 @@ export default class Basket {
     let totalPrice = 0;
     console.log(this.items);
     if (this.items.count <= 0) return 0;
-    this.items.array.forEach((i) => {
+    this.items.forEach((i) => {
       totalPrice = (totalPrice + i.product.price) * i.count;
     });
     console.log("total price:" + totalPrice);

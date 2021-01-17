@@ -26,9 +26,6 @@ class ProductTile extends Component {
               </Typography>
             </CardContent>
             <CardActions style={{ float: "right" }}>
-              <Button className="btnDetails" size="small">
-                Details
-              </Button>
               <IconButton
                 edge="end"
                 className={"basketButton"}

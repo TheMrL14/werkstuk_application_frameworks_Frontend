@@ -9,6 +9,7 @@ class CheckoutForm extends Component {
     const { auth } = this.props;
 
     const token = auth.getAccessToken();
+    console.log(this.props.total);
     PaymentAPI.getClientSecret(token, this.props.total, (json) => {
       _clientSecret = json.client_secret;
       this.setState({ totalPrice: this.props.total, formIsShown: true });

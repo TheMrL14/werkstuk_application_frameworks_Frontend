@@ -2,6 +2,7 @@ const INDEX = "http://localhost:8080";
 const API = INDEX + "/api";
 const PRODUCTS = API + "/products";
 const USER = API + "/user";
+const ORDER = API + "/order";
 const PAYMENT = INDEX + "/payment";
 
 module.exports = {
@@ -12,4 +13,6 @@ module.exports = {
   CREATE_USER: USER + "/create",
   PAYMENT: PAYMENT,
   CHARGE: PAYMENT + "/charge",
+  PLACE_ORDER: ORDER + "/create",
+  GET_ORDERS: ORDER + "/get",
 };
